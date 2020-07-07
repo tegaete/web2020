@@ -1,0 +1,103 @@
+:root {
+	--main-bg-color: #78B1BE;
+	--secondary-color: #61D8BB;
+	--game-height: 600px;
+}
+
+input {
+    margin: 4px ;
+}
+
+div {
+    padding: 10px ;
+}
+#gamearea{
+    background: lightgray;
+    height: 53vh;
+    width: 36vw;
+
+}
+#userlist{
+	height:  var(--game-height);
+	background: lightgray;
+}
+#banner{
+    height: 60px;
+    width: 50vw;
+	background: lightgray;
+}
+
+#messageBox{
+
+    height: 53vh;
+    max-width: 100% ;
+	background: lightgray;
+}
+#messageInput{
+
+    height: 4vh;
+    max-width: 100% ;
+	background: white;
+}
+#chat{
+    background: whitesmoke;
+    
+    height: 59vh;
+    width: 25vw;
+    position: unset;
+
+}
+.user {
+	margin: 4px;
+	height: 40px;
+	width: 100%;
+	display: block;
+	background: white;
+  }
+
+  .colorBlock {
+    height: 50px;
+    width: 50px;
+    display: inline-block
+  }
+   #white{
+      background: white;
+      }
+  
+   #black{
+      background: black;
+      }
+  #darkgrey{
+      background: darkgrey;
+      }
+  #yellow{
+      background: yellow;
+      }
+   #red{
+      background: red;
+      }
+   #blue{
+      background: blue;
+      }
+    #orange{
+        background: orange;
+    }
+    #green{
+        background: green;
+    }
+    #purple{
+        background: purple;
+    }
+    #pink{
+        background: pink;
+    }
+    #darkbrown{
+        background: #613613;
+    }
+    #brown{
+        background: #7e481c;
+    }
+    #clearCanvas{
+        background: lightslategrey;
+    }
+    

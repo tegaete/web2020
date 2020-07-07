@@ -1,0 +1,14 @@
+html {
+    background-color: #1768ac;
+}
+
+
+footer{
+    position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+nav{
+    position: unset;
+}
