@@ -1,0 +1,23 @@
+steps:
+  - id: 'Build docker image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/rtsketch:$BUILD_ID", ".", "-f", "Dockerfile.stage"]
+
+  - id: 'Push docker image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: ["push",  "gcr.io/$PROJECT_ID/rtsketch:$BUILD_ID"]
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+    - 'run'
+    - 'deploy'
+    - 'rtsketch'
+    - '--image'
+    - 'gcr.io/$PROJECT_ID/rtsketch:$BUILD_ID'
+    - '--region'
+    - 'us-east1'
+    - '--platform'
+    - 'managed'
+    - '--allow-unauthenticated'
+    - '--port'
+    - '80'
