@@ -20,4 +20,4 @@ RUN npm install && ng build --prod
 
 
 FROM nginx:1.15 AS final
-COPY --from=base /app/dist/rtsketch/usr/share/nginx/html/
+COPY --from=base /app/dist/rtsketch /usr/share/nginx/html/
