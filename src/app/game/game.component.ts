@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DynamicScriptLoader } from '../dynamic-script-loader.service';
+//import { DynamicScriptLoader } from '../dynamic-script-loader.service';
 import { start } from '../../assets/js/canvas.js';
 
 declare var canvasjs:any;
