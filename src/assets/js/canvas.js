@@ -1,7 +1,7 @@
 color = "black";
 cookie = "";
-
-
+var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
+//addr = 'http://192.168.1.4:3030';
 window.addEventListener("load", ()=> {
    
     const canvas = document.querySelector("#gameCanvas");
@@ -93,15 +93,13 @@ setTimeout(function() {
 
 function next_turn(){
     //http://192.168.1.4:3030/api/v1/games/1/next
-        var addr = 'http://192.168.1.4:3030';
+      
             var request = new XMLHttpRequest()
             request.open('POST', addr + '/api/v1/games/1/next', true)
             request.send()
 }
 
 function active_turn(){
-    //http://192.168.1.4:3030/api/v1/games/1/next
-        var addr = 'http://192.168.1.4:3030';
             var request = new XMLHttpRequest()
             request.open('POST', addr + '/api/v1/games/1/active', true)
             request.onload = function () {
@@ -112,8 +110,6 @@ function active_turn(){
             request.send()
 }
 function send_drawing( x,  y,  col){
-    //http://192.168.1.4:3030/api/v1/games/1/next
-        var addr = 'http://192.168.1.4:3030';
             var request = new XMLHttpRequest()
             var parameters = '?cookie=' + cookie + '&xcoord=' + x +'&ycoord=' + y + '&color=' + col;
             request.open('POST', addr + '/api/v1/games/1/draw'+ parameters, true)
@@ -127,8 +123,6 @@ function send_drawing( x,  y,  col){
     }
 
     function request(){
-        //http://192.168.1.4:3030/api/v1/games/1/next
-            var addr = 'http://192.168.1.4:3030';
                 var request = new XMLHttpRequest()
                 request.open('POST', addr + '/api/v1/games/1/request_drawing', true)
         
@@ -168,16 +162,12 @@ function send_drawing( x,  y,  col){
         }
 
         function clear_canvas(){
-            //http://192.168.1.4:3030/api/v1/games/1/next
-                var addr = 'http://192.168.1.4:3030';
                     var request = new XMLHttpRequest()
                     request.open('POST', addr + '/api/v1/games/1/clear', true)
                     request.send()
         }
 
         function create_session(){
-            //http://192.168.1.4:3030/api/v1/games/1/next
-                var addr = 'http://192.168.1.4:3030';
                 // Create a request variable and assign a new XMLHttpRequest object to it.
                     var request = new XMLHttpRequest()
                     // Open a new connection, using the GET request on the URL endpoint
