@@ -2,6 +2,7 @@
 color = "black";
 cookie = window.localStorage.getItem('cookie');
 var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
+var clientaddr = 'https://rtsketch-kbefbqorma-ue.a.run.app/'
 //addr = 'http://192.168.1.4:3030';
 window.addEventListener("load", ()=> {
     console.log('local storage cookie: ' + window.localStorage.getItem('cookie'))         
@@ -55,7 +56,10 @@ function g_init(){
     if(!log_flag)
     {
         console.log('no cookie');
-        window.location.replace('/home')
+        //window.location.replace('/home')
+        //test of alternative method to replace:
+        window.location = clientaddr + 'home';
+        
         return;
     }
     window.localStorage.setItem('interval_id',  window.setInterval(function(){request();}, 1000))
