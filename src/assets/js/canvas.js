@@ -257,7 +257,7 @@ l1 = 0;
                 update_visuals();
                 window.location.replace('/home')
             }else{
-                console.log('error de logout')
+              console.log('error de logout ' + data)
             }
             console.log(data)    
                 
