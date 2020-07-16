@@ -1,7 +1,4 @@
 
-
-
-
 color = "black";
 cookie = window.localStorage.getItem('cookie');
 var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
@@ -12,18 +9,32 @@ window.addEventListener("load", ()=> {
 
     //document.querySelector("#menu_game").addEventListener("mousedown", function(){ g_init();});
     //workaround para cargar partes especificas del codigo cuando es necesario.
+//*
     try{
         g = document.querySelector("#gameCanvas");
         if (g!=null)
            g_init();
     }
     catch{}
-
+//*/
     load_events_home();
     load_events_register();
     update_visuals();
+    extra_events();
     
 });
+
+function extra_events(){
+    try{
+        document.querySelector("#menu_game").addEventListener("click", function(){g_init();});
+        document.querySelector("#menu_home").addEventListener("click", function(){update_visuals();});
+        document.querySelector("#btn_lets_play").addEventListener("click", function(){g_init();});
+        //document.querySelector("#menu_game").addEventListener("click", function(){g_init();});btn_lets_play
+    }
+    catch{}
+}
+
+
 
 function load_events_register(){
     try {
@@ -195,7 +206,8 @@ l1 = 0;
                 ctx2.strokeStyle = l.line[2];
                 ctx2.lineWidth = 5;
                 ctx2.globalApha = 1;
-                if((l0 != 0  && l1 != 0) && Math.abs(l0 - l.line[0]) + Math.abs(l1 - l.line[1]) > 60){
+                //elimina algunos artifacts generados al escribir el dibujo en el servidor
+                if((l0 != 0  && l1 != 0) && Math.abs(l0 - l.line[0]) + Math.abs(l1 - l.line[1]) > 80){
                     ctx2.strokeStyle = "magenta";
                     ctx2.globalApha = 0.1;
                     ctx2.lineWidth = 0.00001;
@@ -404,6 +416,7 @@ l1 = 0;
         var element = document.getElementById('login-card');
         element.appendChild(tag);
         document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  window.location.replace('/game');});  
+        document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  extra_events();});  
     }
     catch{}
     }
@@ -427,4 +440,11 @@ l1 = 0;
             replace_login();
         }
         
+    }
+
+
+
+    function log_as_guest(){
+        //inputName btn_play_as_guest
+
     }

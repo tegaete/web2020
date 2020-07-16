@@ -33,7 +33,7 @@
                       </div>
                       <div class="col-lg-5">
                         <label for="inputLanguage" class="sr-only">Language</label> <!--- Convert to menu  --->
-                        <input type="text" id="inputLanguage" class="form-control" placeholder="Language" required="">
+                        <input type="text" id="inputLanguage" class="form-control" placeholder="Language" value="eng" disabled>
                       </div>
                     </div>
                     <div class="col-lg-12" id="avatarArea">
@@ -42,9 +42,9 @@
                         <p>Avatar area
                       
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="play">Play</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" value="play" id="btn_play_as_guest">Play</button>
                      <!--- El handling dee este botón debe ser hecho por backend.  --->
-                    <button class="btn btn-lg btn-secondary btn-block" type="submit" value="create_room"> Create private room </button>
+                    <button class="btn btn-lg btn-secondary btn-block" type="submit" value="create_room" disabled> Create private room </button>
                 
                   </form>
               </div>
