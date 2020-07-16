@@ -264,7 +264,11 @@ l1 = 0;
                 update_visuals();
                 window.location.replace('/home')
             }else{
+<<<<<<< HEAD
                 console.log('error de logout ' + data)
+=======
+              console.log('error de logout ' + data)
+>>>>>>> e0fad7669edbdf02f14fc9842591aa4f35b61f23
             }
             console.log(data)    
                 
@@ -417,6 +421,7 @@ l1 = 0;
         elmnt.remove();
         }
         catch{}
+<<<<<<< HEAD
 
         var un = window.localStorage.getItem('username');
         if(un == "null"){
@@ -430,3 +435,8 @@ l1 = 0;
         }
         
     }
+=======
+        show_logout();
+        show_username();
+    }
+>>>>>>> e0fad7669edbdf02f14fc9842591aa4f35b61f23
