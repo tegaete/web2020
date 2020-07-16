@@ -264,11 +264,7 @@ l1 = 0;
                 update_visuals();
                 window.location.replace('/home')
             }else{
-<<<<<<< HEAD
                 console.log('error de logout ' + data)
-=======
-              console.log('error de logout ' + data)
->>>>>>> e0fad7669edbdf02f14fc9842591aa4f35b61f23
             }
             console.log(data)    
                 
@@ -394,8 +390,6 @@ l1 = 0;
 
         var elmnt = document.getElementById("login-card-f");
         removeAllChildNodes(elmnt);
-
-        id="login-card-f"
         
         //var tag0 = document.createElement("div");
         //tag0.setAttribute("class", "col-lg-6 col-md-6 align-middle");
@@ -421,7 +415,6 @@ l1 = 0;
         elmnt.remove();
         }
         catch{}
-<<<<<<< HEAD
 
         var un = window.localStorage.getItem('username');
         if(un == "null"){
@@ -435,8 +428,3 @@ l1 = 0;
         }
         
     }
-=======
-        show_logout();
-        show_username();
-    }
->>>>>>> e0fad7669edbdf02f14fc9842591aa4f35b61f23
