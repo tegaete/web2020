@@ -3,7 +3,7 @@
 color = "black";
 cookie = window.localStorage.getItem('cookie');
 var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
-addr = 'http://192.168.1.4:3030';
+//addr = 'http://192.168.1.4:3030';
 window.addEventListener("load", ()=> {
     console.log('local storage cookie: ' + window.localStorage.getItem('cookie'))         
     console.log('local storage username: ' + window.localStorage.getItem('username'))         
