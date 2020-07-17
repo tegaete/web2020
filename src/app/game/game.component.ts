@@ -121,8 +121,8 @@ function add_colors(ctx, canvas){
   //document.querySelector("#darkbrown").addEventListener("mousedown", function(){color = "#613613";});
   document.querySelector("#brown").addEventListener("mousedown", function(){color = "brown";});
   
-  document.querySelector("#button_Pass").addEventListener("mousedown", function(){active_turn()});
-  document.querySelector("#button_next").addEventListener("mousedown", function(){next_turn();});
+ // document.querySelector("#button_Pass").addEventListener("mousedown", function(){active_turn()});
+ // document.querySelector("#button_next").addEventListener("mousedown", function(){next_turn();});
   //document.querySelector("#btn_request").addEventListener("mousedown", function(){request();});
   
   //document.querySelector("#clearCanvas").addEventListener("mousedown", function(){ctx.clearRect(0, 0, canvas.width, canvas.height); });
