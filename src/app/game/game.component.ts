@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{Router} from '@angular/router';
 //import { start } from '../../assets/js/canvas.js';
 
 declare var canvasjs:any;
@@ -8,14 +8,23 @@ declare var canvasjs:any;
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
+
 })
 export class GameComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
    
-    g_init();
+    var can_stay = is_logged_in();
+    if(!can_stay){
+       this._router.navigate(['/home']);
+       console.log('cant stay in game component')
+    }else{
+      g_init();
+    }
   }
 }
 var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
@@ -23,13 +32,7 @@ var color = "black";
 var cookie = window.localStorage.getItem('cookie');
 
 function g_init(){
-  var log_flag = is_logged_in();
-  if(!log_flag)
-  {
-      console.log('no cookie');
-      window.location.replace('/home')
-      return;
-  }
+
   var interval_id = window.setInterval(function(){request();}, 1000);
   window.localStorage.setItem('interval_id', String(interval_id) )
   console.log('interval id: ' + window.localStorage.getItem('interval_id'))
@@ -214,11 +217,12 @@ var l1 = 0;
         }
     request.send()
 }
-function is_logged_in(){
+function is_logged_in():boolean{
   if(window.localStorage.getItem('cookie') == "null"){
       console.log('no cookie 2');
       return false;
   }else{
+      console.log('yes cookie 2');
       return true;
   }
 }

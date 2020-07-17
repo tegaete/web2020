@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { register } from '../../assets/js/canvas.js';
+import{Router} from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,13 +8,25 @@ import { register } from '../../assets/js/canvas.js';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit(): void {
       //register();
       load_events_register();
-    }
+    
 
+    /* 
+      var can_stay = true;
+      if(!can_stay){
+        this._router.navigate(['/home']);
+        console.log('cant stay in game component')
+      }else{
+        
+      }
+  // */
+  }
 }
 
 
@@ -35,7 +48,7 @@ function register(){
   var passconf = document.querySelector<HTMLInputElement>("#inputPasswordConfirmation").value;
   if (pass == passconf){
       send_registry(un, lang, email, pass);
-      alert("registro creado");
+      alert("registro enviado");
   }
   else{
       console.log('register error: pass != passconf');
@@ -53,7 +66,7 @@ function send_registry(un, lang, email, pass){
   request.onload = function () {
           var data = JSON.parse(this.response)  
           if (data.data == 'ok'){
-              window.location.replace('/home')
+              window.location.assign('/home')
           }else{
               console.log('error de registro')
           }
