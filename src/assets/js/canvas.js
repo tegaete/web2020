@@ -13,33 +13,30 @@ window.addEventListener("load", ()=> {
 //*
     try{
         g = document.querySelector("#gameCanvas");
-        if (g!=null)
-           g_init();
+       // if (g!=null)
+           //g_init();
     }
     catch{}
 //*/
-        load_events_home();
-        load_events_register();
-        update_visuals();
-        extra_events();
+       // load_events_home();
+       // load_events_register();
+        //update_visuals();
+        //extra_events();
     
     });
 
 function extra_events(){
     try{
-        document.querySelector("#menu_game").addEventListener("click", function(){g_init();});
-        document.querySelector("#menu_home").addEventListener("click", function(){update_visuals();});
-        document.querySelector("#btn_lets_play").addEventListener("click", function(){g_init();});
+       // document.querySelector("#menu_game").addEventListener("click", function(){g_init();});
+
+       //if this is for logout, might be needed.
+        //document.querySelector("#menu_home").addEventListener("click", function(){update_visuals();});
+       // document.querySelector("#btn_lets_play").addEventListener("click", function(){g_init();});
         //document.querySelector("#menu_game").addEventListener("click", function(){g_init();});btn_lets_play
     }
     catch{}
 }
-function load_events_register(){
-    try {
-        //document.querySelector("#btn_register").addEventListener("mousedown", function(){register();});
-     }
-   catch{console.log('register event bind failure')}
-}
+
 
 function load_events_home(){
     try{
@@ -47,6 +44,9 @@ function load_events_home(){
     }
     catch{}
 }
+
+///////////////////////////// Game component v 
+/*
 
 function g_init(){
     log_flag = is_logged_in();
@@ -233,6 +233,49 @@ l1 = 0;
                 send_drawing(0, 0, "clear_canvas")
     }
 
+
+    function get_current_users(){
+        var request = new XMLHttpRequest()
+        request.open('POST', addr + '/api/v1/games/1/current', true)
+        request.onload = function () {
+                var data = JSON.parse(this.response)
+                data.forEach(element => show_connected(element))
+                console.log(data)                      
+            }
+        request.send()
+    }
+
+
+    function is_logged_in(){
+        if(window.localStorage.getItem('cookie') == "null"){
+            console.log('no cookie 2');
+            return false;
+        }else{
+            return true;
+        }
+    }
+    function show_connected(username){
+        var tag = document.createElement("div");
+        var text = document.createTextNode("" + username);
+        tag.setAttribute("class", "user");
+        tag.style.margin = '4px';
+        tag.style.height = '40px';
+        tag.style.width = '100%';
+        tag.style.display = 'block';
+        tag.style.background = 'white';
+        tag.style.padding = '10px';
+        tag.appendChild(text);
+        var element = document.getElementById('userlist');
+        element.appendChild(tag);
+    }
+
+
+////////////////////////////////////////////////////// Game component //////////////////////////////////////// */
+
+
+////////////////////////////////  functions on login component
+/*
+
     function login_prep(){
   //form-signin
         u = document.querySelector("#inputUsername").value;
@@ -263,6 +306,89 @@ l1 = 0;
         request.send()
     }
 
+    
+    function update_visuals(){
+        try{var elmnt = document.getElementById("menu_username_text");
+        elmnt.remove();
+        var elmnt = document.getElementById("menu_logout_text");
+        elmnt.remove();
+        }
+        catch{}
+
+        var un = window.localStorage.getItem('username');
+        if(un == "null"){
+            console.log('no used dependant buttons');
+            return;
+        }else{
+        
+            show_logout();
+            show_username(un);
+            replace_login();
+        }
+        
+    }
+ 
+
+    //creates a tag to show the user is logged in
+    function show_username(un){
+        var tag = document.createElement("p");
+        tag.setAttribute("id", "menu_username_text");
+
+        var text = document.createTextNode("Welcome " + un);
+        tag.appendChild(text);
+        var element = document.getElementById('menu_user');
+        element.appendChild(tag);
+    }
+
+    function show_logout(){
+        var tag = document.createElement("p");
+        tag.setAttribute("id", "menu_logout_text");
+
+        var text = document.createTextNode("Log out here");      
+        tag.appendChild(text);
+        var element = document.getElementById('menu_logout');
+        element.appendChild(tag);
+        document.querySelector("#menu_logout").addEventListener("mousedown", function(){logout();});
+        
+    }
+
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+    function replace_login(){
+        try{
+        var elmnt = document.getElementById("login-card");
+        removeAllChildNodes(elmnt);
+        var elmnt = document.getElementById("guest-card");
+        removeAllChildNodes(elmnt);
+
+        var elmnt = document.getElementById("login-card-f");
+        removeAllChildNodes(elmnt);
+        
+        //var tag0 = document.createElement("div");
+        //tag0.setAttribute("class", "col-lg-6 col-md-6 align-middle");
+
+        var tag = document.createElement("button");
+        var text = document.createTextNode("let's play!");
+        tag.setAttribute("class", "btn btn-lg btn-primary btn-block");
+        tag.setAttribute("id", "btn_lets_play");
+        tag.style.display = 'block';
+        tag.style.padding = '10px';
+        tag.appendChild(text);
+        var element = document.getElementById('login-card');
+        element.appendChild(tag);
+        document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  window.location.replace('/game');});  
+        document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  extra_events();});  
+    }
+    catch{}
+    }
+
+
+
+
+
     function logout(){
         c =  window.localStorage.getItem('cookie');
         var request = new XMLHttpRequest()
@@ -287,11 +413,25 @@ l1 = 0;
     }
         
 
-        //register
+//////////////////////////////////////////   on login */
+      
+
+///////////////////////functions on register component
+
+
+  //register
         //btn_register
         //document.querySelector("#btn_register").addEventListener("mousedown", function(){request();});
         //form = document.querySelector(".form-register");
         //form.addEventListener("submit", function(){request();});
+/*
+
+    function load_events_register(){
+        try {
+            //document.querySelector("#btn_register").addEventListener("mousedown", function(){register();});
+            }
+        catch{console.log('register event bind failure')}
+    }
     function register(){
         un = document.querySelector("#inputUsername").value;
         lang =  document.querySelector("#inputLanguage").value;
@@ -331,118 +471,8 @@ l1 = 0;
         request.send()
     }
 
-    function get_current_users(){
-        var request = new XMLHttpRequest()
-        request.open('POST', addr + '/api/v1/games/1/current', true)
-        request.onload = function () {
-                var data = JSON.parse(this.response)
-                data.forEach(element => show_connected(element))
-                console.log(data)                      
-            }
-        request.send()
-    }
 
-    function is_logged_in(){
-        if(window.localStorage.getItem('cookie') == "null"){
-            console.log('no cookie 2');
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    //creates a tag to show the user is logged in
-    function show_username(un){
-        var tag = document.createElement("p");
-        tag.setAttribute("id", "menu_username_text");
-
-        var text = document.createTextNode("Welcome " + un);
-        tag.appendChild(text);
-        var element = document.getElementById('menu_user');
-        element.appendChild(tag);
-    }
-
-    function show_logout(){
-        var tag = document.createElement("p");
-        tag.setAttribute("id", "menu_logout_text");
-
-        var text = document.createTextNode("Log out here");      
-        tag.appendChild(text);
-        var element = document.getElementById('menu_logout');
-        element.appendChild(tag);
-        document.querySelector("#menu_logout").addEventListener("mousedown", function(){logout();});
-        
-    }
-
-    function show_connected(username){
-        var tag = document.createElement("div");
-        var text = document.createTextNode("" + username);
-        tag.setAttribute("class", "user");
-        tag.style.margin = '4px';
-        tag.style.height = '40px';
-        tag.style.width = '100%';
-        tag.style.display = 'block';
-        tag.style.background = 'white';
-        tag.style.padding = '10px';
-        tag.appendChild(text);
-        var element = document.getElementById('userlist');
-        element.appendChild(tag);
-    }
-
-    function removeAllChildNodes(parent) {
-        while (parent.firstChild) {
-            parent.removeChild(parent.firstChild);
-        }
-    }
-    function replace_login(){
-        try{
-        var elmnt = document.getElementById("login-card");
-        removeAllChildNodes(elmnt);
-        var elmnt = document.getElementById("guest-card");
-        removeAllChildNodes(elmnt);
-
-        var elmnt = document.getElementById("login-card-f");
-        removeAllChildNodes(elmnt);
-        
-        //var tag0 = document.createElement("div");
-        //tag0.setAttribute("class", "col-lg-6 col-md-6 align-middle");
-
-        var tag = document.createElement("button");
-        var text = document.createTextNode("let's play!");
-        tag.setAttribute("class", "btn btn-lg btn-primary btn-block");
-        tag.setAttribute("id", "btn_lets_play");
-        tag.style.display = 'block';
-        tag.style.padding = '10px';
-        tag.appendChild(text);
-        var element = document.getElementById('login-card');
-        element.appendChild(tag);
-        document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  window.location.replace('/game');});  
-        document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  extra_events();});  
-    }
-    catch{}
-    }
-
-    function update_visuals(){
-        try{var elmnt = document.getElementById("menu_username_text");
-        elmnt.remove();
-        var elmnt = document.getElementById("menu_logout_text");
-        elmnt.remove();
-        }
-        catch{}
-
-        var un = window.localStorage.getItem('username');
-        if(un == "null"){
-            console.log('no used dependant buttons');
-            return;
-        }else{
-        
-            show_logout();
-            show_username(un);
-            replace_login();
-        }
-        
-    }
-
+    ////////////////////// registrer  //////////////////// */
 
 
     function log_as_guest(){

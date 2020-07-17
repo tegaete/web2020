@@ -8,3 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'rtsketch';
 }
+var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
