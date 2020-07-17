@@ -18,12 +18,12 @@ window.addEventListener("load", ()=> {
     }
     catch{}
 //*/
-    load_events_home();
-    load_events_register();
-    update_visuals();
-    extra_events();
+        load_events_home();
+        load_events_register();
+        update_visuals();
+        extra_events();
     
-});
+    });
 
 function extra_events(){
     try{
@@ -34,19 +34,16 @@ function extra_events(){
     }
     catch{}
 }
-
-
-
 function load_events_register(){
     try {
-        document.querySelector("#btn_register").addEventListener("mousedown", function(){register();});}
+        //document.querySelector("#btn_register").addEventListener("mousedown", function(){register();});
+     }
    catch{console.log('register event bind failure')}
 }
 
 function load_events_home(){
     try{
-        document.querySelector("#btn_login").addEventListener("mousedown", function(){ login();});   
-        
+        document.querySelector("#btn_login").addEventListener("mousedown", function(){ login();});
     }
     catch{}
 }
