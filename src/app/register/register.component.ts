@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     //Ya no se compara, por un problema de rutas.
     if (register() || true){
       this._router.navigate(['/home']);
-      console.log('success in registry')
+      //console.log('success in registry')
     }else{
       console.log('fail in registry')
     }
@@ -57,12 +57,13 @@ function register():boolean{
   var email =  document.querySelector<HTMLInputElement>("#inputEmail").value;
   var pass =  document.querySelector<HTMLInputElement>("#inputPassword").value;
   var passconf = document.querySelector<HTMLInputElement>("#inputPasswordConfirmation").value;
-  if (pass == passconf){
+  if (pass == passconf && un.length > 0 && email.length > 0 && pass.length > 0){
       var flag = send_registry(un, lang, email, pass);
       alert("registro enviado");
       return flag;
   }
   else{
+      alert("registro no enviado: las contraseñas no son las mismas o un dato esta en blanco.");
       console.log('register error: pass != passconf');
       return false;
     }

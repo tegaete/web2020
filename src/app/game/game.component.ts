@@ -17,13 +17,14 @@ export class GameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
+    
     var can_stay = is_logged_in();
     if(!can_stay){
        this._router.navigate(['/home']);
        console.log('cant stay in game component')
     }else{
       g_init();
+      interval_run();
     }
   }
 }
@@ -31,15 +32,21 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
 var color = "black";
 var cookie = window.localStorage.getItem('cookie');
 
-function g_init(){
-
+//Limits interval runs
+var interval_id = -1;
   //Start the autorequests for the drawings
-  var interval_id = window.setInterval(function(){request();}, 2000);
-  window.localStorage.setItem('interval_id', String(interval_id) )
-  console.log('interval id: ' + window.localStorage.getItem('interval_id'))
+function interval_run(){
+    if(interval_id <= 0){
+      interval_id = window.setInterval(function(){request();}, 2000);
+      window.localStorage.setItem('interval_id', String(interval_id) )
+      console.log('interval id: ' + window.localStorage.getItem('interval_id'))
+    }
+    
+    //clearinterval with this value stops the autorequests
+    //clearInterval(interval_id)
+}
 
-  //clearinterval with this value stops the autorequests
-  //clearInterval(interval_id)
+function g_init(){
 
   get_current_users();
   const canvas = <HTMLCanvasElement>document.querySelector("#gameCanvas");
@@ -166,6 +173,7 @@ function send_drawing( x,  y,  col){
 var l0 = 0;
 var l1 = 0;
   function draw_from_request(data){
+    try{
       const canvas2 = <HTMLCanvasElement>document.querySelector("#gameCanvas");
       console.log("canvas request is running");
       const ctx2 = canvas2.getContext('2d');
@@ -202,7 +210,8 @@ var l1 = 0;
           }
           //console.log(l)
       })
-  }
+  }catch{}
+}
 
   function clear_canvas(){
               var request = new XMLHttpRequest()
