@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{Router} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit(): void {
     document.querySelector("#btn_login").addEventListener("mousedown", function(){ login();});
     update_visuals();
+
+
+  }
+
+  onClick(){
+      this._router.navigate(['/game']);
   }
 
 }
@@ -32,12 +38,12 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
 
                     console.log('local storage: cookie ' + window.localStorage.getItem('cookie'))      
                     update_visuals();
-                    window.location.replace('/user')
+                    //replaced by routerlink on element
+                    //window.location.replace('/user')
                 }else{
                     console.log('error?')
                 }
-                console.log(data)    
-                    
+                console.log(data)           
             }
         request.send()
     }
@@ -62,7 +68,6 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
           show_username(un);
           replace_login();
       }
-      
   }
 
   function logout(){
@@ -77,7 +82,8 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
             window.localStorage.setItem('cookie', null);
             window.localStorage.setItem('username', null);
             update_visuals();
-            window.location.replace('/home')
+            //replaced by routerlink in object
+            //window.location.replace('/home')
         }else{
             console.log('error de logout ' + data)
         }
@@ -128,19 +134,8 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
       var elmnt = document.getElementById("login-card-f");
       removeAllChildNodes(elmnt);
       
-      //var tag0 = document.createElement("div");
-      //tag0.setAttribute("class", "col-lg-6 col-md-6 align-middle");
-
-      var tag = document.createElement("button");
-      var text = document.createTextNode("let's play!");
-      tag.setAttribute("class", "btn btn-lg btn-primary btn-block");
-      tag.setAttribute("id", "btn_lets_play");
-      tag.style.display = 'block';
-      tag.style.padding = '10px';
-      tag.appendChild(text);
-      var element = document.getElementById('login-card');
-      element.appendChild(tag);
-      document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  window.location.replace('/game');});  
+      var element = document.getElementById('btn_lets_play').style.display="block";
+     // document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  window.location.replace('/game');});  
      // document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  extra_events();});  
   }
   catch{}
