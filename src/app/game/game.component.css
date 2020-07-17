@@ -95,9 +95,15 @@ div {
         background: #613613;
     }
     #brown{
-        background: #7e481c;
+        background: brown;
     }
-    #clearCanvas{
-        background: lightslategrey;
+    #clearServer{
+        background: white;
+        color: black;
+        border: solid;
+        border-style: ridge;
+        border-color: goldenrod;
+        border-width: medium;
+        width: 90px;
     }
     

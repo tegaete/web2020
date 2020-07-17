@@ -33,10 +33,13 @@ var cookie = window.localStorage.getItem('cookie');
 
 function g_init(){
 
-  var interval_id = window.setInterval(function(){request();}, 1000);
+  //Start the autorequests for the drawings
+  var interval_id = window.setInterval(function(){request();}, 2000);
   window.localStorage.setItem('interval_id', String(interval_id) )
   console.log('interval id: ' + window.localStorage.getItem('interval_id'))
-  clearInterval(interval_id)
+
+  //clearinterval with this value stops the autorequests
+  //clearInterval(interval_id)
 
   get_current_users();
   const canvas = <HTMLCanvasElement>document.querySelector("#gameCanvas");
@@ -108,14 +111,14 @@ function add_colors(ctx, canvas){
   document.querySelector("#green").addEventListener("mousedown", function(){color = "green";});
   document.querySelector("#purple").addEventListener("mousedown", function(){color = "purple";});
   document.querySelector("#pink").addEventListener("mousedown", function(){color = "pink";});
-  document.querySelector("#darkbrown").addEventListener("mousedown", function(){color = "#613613";});
-  document.querySelector("#brown").addEventListener("mousedown", function(){color = "#7e481c";});
+  //document.querySelector("#darkbrown").addEventListener("mousedown", function(){color = "#613613";});
+  document.querySelector("#brown").addEventListener("mousedown", function(){color = "brown";});
   
   document.querySelector("#button_Pass").addEventListener("mousedown", function(){active_turn()});
   document.querySelector("#button_next").addEventListener("mousedown", function(){next_turn();});
-  document.querySelector("#btn_request").addEventListener("mousedown", function(){request();});
+  //document.querySelector("#btn_request").addEventListener("mousedown", function(){request();});
   
-  document.querySelector("#clearCanvas").addEventListener("mousedown", function(){ctx.clearRect(0, 0, canvas.width, canvas.height); });
+  //document.querySelector("#clearCanvas").addEventListener("mousedown", function(){ctx.clearRect(0, 0, canvas.width, canvas.height); });
   document.querySelector("#clearServer").addEventListener("mousedown", function(){ctx.clearRect(0, 0, canvas.width, canvas.height); clear_canvas();});
 }
 
@@ -154,7 +157,7 @@ function send_drawing( x,  y,  col){
   
           request.onload = function () {
               var data = JSON.parse(this.response)
-              console.log(data.length)
+             // console.log(data.length)
               draw_from_request(data)
           }
           // Send request
@@ -164,7 +167,7 @@ var l0 = 0;
 var l1 = 0;
   function draw_from_request(data){
       const canvas2 = <HTMLCanvasElement>document.querySelector("#gameCanvas");
-      console.log("hello this is canvas request");
+      console.log("canvas request is running");
       const ctx2 = canvas2.getContext('2d');
   
       ctx2.lineWidth = 5;
@@ -180,6 +183,7 @@ var l1 = 0;
           }
           else{
               ctx2.strokeStyle = l.line[2];
+              //console.log(l.line[2]);
               ctx2.lineWidth = 5;
               //ctx2.globalApha = 1;
               //elimina algunos artifacts generados al escribir el dibujo en el servidor
@@ -236,6 +240,8 @@ function show_connected(username){
   tag.style.display = 'block';
   tag.style.background = 'white';
   tag.style.padding = '10px';
+  tag.style.border = 'solid';
+  tag.style.borderWidth = 'thin';
   tag.appendChild(text);
   var element = document.getElementById('userlist');
   element.appendChild(tag);

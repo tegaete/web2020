@@ -20,6 +20,10 @@ export class HomeComponent implements OnInit {
       this._router.navigate(['/game']);
   }
 
+  
+
+
+
 }
 var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
   
@@ -60,7 +64,7 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
 
       var un = window.localStorage.getItem('username');
       if(un == "null"){
-          console.log('no used dependant buttons');
+          console.log('no user-dependant buttons');
           return;
       }else{
       
@@ -82,6 +86,7 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
             window.localStorage.setItem('cookie', null);
             window.localStorage.setItem('username', null);
             update_visuals();
+            place_login();
             //replaced by routerlink in object
             //window.location.replace('/home')
         }else{
@@ -126,6 +131,12 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
   }
   function replace_login(){
       try{
+        var loginCardChild = document.getElementById("login-card-child");
+        loginCardChild.style.display="none";
+        var guestCard = document.getElementById("guest-card");
+        guestCard.style.display="none";
+
+/*
       var elmnt = document.getElementById("login-card");
       removeAllChildNodes(elmnt);
       var elmnt = document.getElementById("guest-card");
@@ -133,7 +144,7 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
 
       var elmnt = document.getElementById("login-card-f");
       removeAllChildNodes(elmnt);
-      
+  */    
       var element = document.getElementById('btn_lets_play').style.display="block";
      // document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  window.location.replace('/game');});  
      // document.querySelector("#btn_lets_play").addEventListener("mousedown", function(){  extra_events();});  
@@ -142,3 +153,14 @@ var addr = 'https://rtsketchserver-kbefbqorma-ue.a.run.app';
   }
 
 
+  function place_login(){
+    try{
+      var loginCardChild = document.getElementById("login-card-child");
+      loginCardChild.style.display="block";
+      var guestCard = document.getElementById("guest-card");
+      guestCard.style.display="block";
+    document.getElementById('btn_lets_play').style.display="none";
+   
+}
+catch{}
+}
