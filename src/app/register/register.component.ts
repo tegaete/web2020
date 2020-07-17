@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
       //register();
-      load_events_register();
+      //load_events_register();
     
 
     /* 
@@ -27,6 +27,17 @@ export class RegisterComponent implements OnInit {
       }
   // */
   }
+
+  onRegister(){
+    //Ya no se compara, por un problema de rutas.
+    if (register() || true){
+      this._router.navigate(['/home']);
+      console.log('success in registry')
+    }else{
+      console.log('fail in registry')
+    }
+  }
+  
 }
 
 
@@ -40,22 +51,26 @@ function load_events_register(){
  catch{console.log('register event bind failure')}
 }
 
-function register(){
+function register():boolean{
   var un = document.querySelector<HTMLInputElement>("#inputUsername").value;
   var lang =  document.querySelector<HTMLInputElement>("#inputLanguage").value;
   var email =  document.querySelector<HTMLInputElement>("#inputEmail").value;
   var pass =  document.querySelector<HTMLInputElement>("#inputPassword").value;
   var passconf = document.querySelector<HTMLInputElement>("#inputPasswordConfirmation").value;
   if (pass == passconf){
-      send_registry(un, lang, email, pass);
+      var flag = send_registry(un, lang, email, pass);
       alert("registro enviado");
+      return flag;
   }
   else{
       console.log('register error: pass != passconf');
-  }
+      return false;
+    }
 }
 
-function send_registry(un, lang, email, pass){
+var foobar = false;
+
+function send_registry(un, lang, email, pass):boolean{
   var request = new XMLHttpRequest()
   request.open('POST', addr + '/api/v1/users?game=1'+
   '&username='+ un +
@@ -63,14 +78,25 @@ function send_registry(un, lang, email, pass){
   '&email=' + email +
   '&password=' + pass,
       true)
-  request.onload = function () {
+      foobar = false;
+ request.onload = function () {
           var data = JSON.parse(this.response)  
           if (data.data == 'ok'){
-              window.location.assign('/home')
+              //reemplazado por router
+              //window.location.assign('/home')
+              console.log('registro correcto en servidor')
+              flagger();
           }else{
               console.log('error de registro')
+              alert("Error de registro en servidor, intente de nuevo.");
           }
-          console.log(data)    
       }
   request.send()
+
+  console.log('foobar is: ' + foobar)
+  return foobar;
+}
+
+function flagger(){
+  foobar = true;
 }
